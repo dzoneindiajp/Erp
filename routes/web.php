@@ -43,52 +43,22 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('users/destroy', 'UsersController@massDestroy')->name('users.massDestroy');
     Route::resource('users', 'UsersController');
 
-    // Asset Category
-    Route::delete('asset-categories/destroy', 'AssetCategoryController@massDestroy')->name('asset-categories.massDestroy');
-    Route::resource('asset-categories', 'AssetCategoryController');
+    //Categories
+    Route::resource('categories','CategoryController');
 
-    // Asset Location
-    Route::delete('asset-locations/destroy', 'AssetLocationController@massDestroy')->name('asset-locations.massDestroy');
-    Route::resource('asset-locations', 'AssetLocationController');
+    // SubCategory
+    Route::resource('subcategory','SubcategoryController');
 
-    // Asset Status
-    Route::delete('asset-statuses/destroy', 'AssetStatusController@massDestroy')->name('asset-statuses.massDestroy');
-    Route::resource('asset-statuses', 'AssetStatusController');
 
-    // Asset
-    Route::delete('assets/destroy', 'AssetController@massDestroy')->name('assets.massDestroy');
-    Route::post('assets/media', 'AssetController@storeMedia')->name('assets.storeMedia');
-    Route::post('assets/ckmedia', 'AssetController@storeCKEditorImages')->name('assets.storeCKEditorImages');
-    Route::resource('assets', 'AssetController');
+    // Sizes
+    Route::delete('sizes/destroy', 'sizescontroller@massdestroy')->name('sizes.massdestroy');
+    Route::resource('sizes', 'SizesController');
 
-    // Assets History
-    Route::resource('assets-histories', 'AssetsHistoryController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
+    // Colors
+    Route::delete('colors/destroy', 'colorscontroller@massdestroy')->name('colors.massdestroy');
+    Route::resource('colors', 'ColorsController');
 
-    // Crm Status
-    Route::delete('crm-statuses/destroy', 'CrmStatusController@massDestroy')->name('crm-statuses.massDestroy');
-    Route::resource('crm-statuses', 'CrmStatusController');
 
-    // Crm Customer
-    Route::delete('crm-customers/destroy', 'CrmCustomerController@massDestroy')->name('crm-customers.massDestroy');
-    Route::resource('crm-customers', 'CrmCustomerController');
-
-    // Crm Note
-    Route::delete('crm-notes/destroy', 'CrmNoteController@massDestroy')->name('crm-notes.massDestroy');
-    Route::resource('crm-notes', 'CrmNoteController');
-
-    // Crm Document
-    Route::delete('crm-documents/destroy', 'CrmDocumentController@massDestroy')->name('crm-documents.massDestroy');
-    Route::post('crm-documents/media', 'CrmDocumentController@storeMedia')->name('crm-documents.storeMedia');
-    Route::post('crm-documents/ckmedia', 'CrmDocumentController@storeCKEditorImages')->name('crm-documents.storeCKEditorImages');
-    Route::resource('crm-documents', 'CrmDocumentController');
-
-    // Faq Category
-    Route::delete('faq-categories/destroy', 'FaqCategoryController@massDestroy')->name('faq-categories.massDestroy');
-    Route::resource('faq-categories', 'FaqCategoryController');
-
-    // Faq Question
-    Route::delete('faq-questions/destroy', 'FaqQuestionController@massDestroy')->name('faq-questions.massDestroy');
-    Route::resource('faq-questions', 'FaqQuestionController');
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
     // Change password

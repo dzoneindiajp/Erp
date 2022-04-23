@@ -1,5 +1,18 @@
 @extends('layouts.master')
 @section('content')
+
+<style>
+    table.dataTable {
+width: 100%;
+margin: 0 ;
+margin-top: 0px;
+margin-bottom: 0px;
+clear: both;
+border-collapse: separate;
+border-spacing: 0;
+}
+
+</style>
 @can('user_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
@@ -9,17 +22,19 @@
         </div>
     </div>
 @endcan
-<div class="card">
+<div class="card w-100">
     <div class="card-header">
         {{ trans('cruds.user.title_singular') }} {{ trans('global.list') }}
     </div>
 
-    <div class="card-body">
+
+
+    <div class="card-body w-100">
         <div class="table-responsive">
-            <table class=" table table-bordered table-striped table-hover datatable datatable-User">
+            <table class=" table table-bordered table-striped table-hover datatable datatable-User w-100">
                 <thead>
                     <tr>
-                        <th width="10">
+                        <th width="">
 
                         </th>
                         <th>
@@ -44,7 +59,7 @@
                             {{ trans('cruds.user.fields.roles') }}
                         </th>
                         <th>
-                            &nbsp;
+                            Action
                         </th>
                     </tr>
                 </thead>

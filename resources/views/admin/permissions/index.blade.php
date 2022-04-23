@@ -1,5 +1,18 @@
 @extends('layouts.master')
 @section('content')
+
+<style>
+    table.dataTable {
+width: 100%;
+margin: 0 ;
+margin-top: 0px;
+margin-bottom: 0px;
+clear: both;
+border-collapse: separate;
+border-spacing: 0;
+}
+
+</style>
 @can('permission_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
@@ -16,7 +29,7 @@
 
     <div class="card-body">
         <div class="table-responsive">
-            <table class=" table table-bordered table-striped table-hover datatable datatable-Permission">
+            <table class=" table table-bordered table-striped table-hover datatable datatable-Permission w-100">
                 <thead>
                     <tr>
                         <th width="10">
@@ -29,7 +42,10 @@
                             {{ trans('cruds.permission.fields.title') }}
                         </th>
                         <th>
-                            &nbsp;
+                            {{ trans('cruds.permission.fields.name') }}
+                        </th>
+                        <th>
+                           Action
                         </th>
                     </tr>
                 </thead>
@@ -44,6 +60,9 @@
                             </td>
                             <td>
                                 {{ $permission->title ?? '' }}
+                            </td>
+                            <td>
+                                {{ $permission->name ?? '' }}
                             </td>
                             <td>
                                 @can('permission_show')
@@ -62,7 +81,7 @@
                                     <form action="{{ route('admin.permissions.destroy', $permission->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
+                                        {{-- <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}"> --}}
                                     </form>
                                 @endcan
 
@@ -72,12 +91,10 @@
                     @endforeach
                 </tbody>
             </table>
-            {{ $permissions->links() }}
+
         </div>
     </div>
 </div>
-
-
 
 @endsection
 @section('scripts')

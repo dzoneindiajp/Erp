@@ -32,7 +32,14 @@
             </div>
             <div class="form-group">
                 <label class="required" for="country">{{ trans('cruds.user.fields.country') }}</label><br>
-                <input class="form-control {{ $errors->has('country') ? 'is-invalid' : '' }}" type="text" name="country" id="country" value="{{ old('country', '') }}" required>
+                {{-- <input class="form-control {{ $errors->has('country') ? 'is-invalid' : '' }}" type="text" name="country" id="country" value="{{ old('country', '') }}" required>
+                 --}}
+
+                 <select class="form-control select2 {{ $errors->has('country') ? 'is-invalid' : '' }}" name="country" id="country" value="{{ old('country', '') }}"  required>
+                    @foreach($countries as $c)
+                        <option value="{{ $c->name }}">{{ $c->name }}</option>
+                    @endforeach
+                </select>
                 @if($errors->has('country'))
                 <div class="invalid-feedback">
                     {{ $errors->first('country') }}
@@ -64,11 +71,9 @@
              @endif
             <span class="help-block">{{ trans('cruds.user.fields.gender_helper') }}</span>
         </div>
-
-
             <div class="form-group">
                 <div class="form-check {{ $errors->has('approved') ? 'is-invalid' : '' }}">
-                    <input type="hidden" name="approved" value="0">
+                    <input type="hidden" name="approved" value="0"> <br>
                     <input class="form-check-input" type="checkbox" name="approved" id="approved" value="1" {{ old('approved', 0) == 1 ? 'checked' : '' }}>
                     <label class="form-check-label" for="approved">{{ trans('cruds.user.fields.approved') }}</label>
                 </div>
@@ -101,11 +106,11 @@
             </div>
             <div class="form-group">
                 <label class="required" for="roles">{{ trans('cruds.user.fields.roles') }}</label>
-                <div style="padding-bottom: 4px">
+                {{-- <div style="padding-bottom: 4px">
                     <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
                     <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
-                </div>
-                <select class="form-control select2 {{ $errors->has('roles') ? 'is-invalid' : '' }}" name="roles[]" id="roles" multiple required>
+                </div> --}}
+                <select class="form-control select2 {{ $errors->has('roles') ? 'is-invalid' : '' }}" name="roles[]" id="roles"  required>
                     @foreach($roles as $id => $role)
                         <option value="{{ $id }}" {{ in_array($id, old('roles', [])) ? 'selected' : '' }}>{{ $role }}</option>
                     @endforeach

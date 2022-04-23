@@ -38,9 +38,23 @@
                 </a>
                 <div id="collapseOne" class="collapse {{ Request::is("admin/permissions*")? "show" : "" }}  {{ Request::is("admin/roles*")? "show" : "" }}  {{ Request::is("admin/users*")? "show" : "" }}" aria-labelledby="headingOne" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item {{ Request::is('admin/permissions')? "active" : "" }}" href="{{ route("admin.permissions.index") }}"><i class="fa fa-lock" aria-hidden="true"></i>Permission</a>
-                        <a class="collapse-item {{ Request::is('admin/roles')? "active" : "" }}" href="{{ route("admin.roles.index") }}"><i class="fa fa-tasks" aria-hidden="true"></i>Roles</a>
-                        <a class="collapse-item {{ Request::is('admin/users')? "active" : "" }}" href="{{ route("admin.users.index") }}"><i class="fa fa-users" aria-hidden="true"></i>Users</a>
+                        <a class="collapse-item {{ Request::is('admin/permissions')? "active" : "" }}" href="{{ route("admin.permissions.index") }}"><i class="fa fa-lock" aria-hidden="true"></i>&nbsp;Permission</a>
+                        <a class="collapse-item {{ Request::is('admin/roles')? "active" : "" }}" href="{{ route("admin.roles.index") }}"><i class="fa fa-tasks" aria-hidden="true"></i>&nbsp;Roles</a>
+                        <a class="collapse-item {{ Request::is('admin/users')? "active" : "" }}" href="{{ route("admin.users.index") }}"><i class="fa fa-users" aria-hidden="true"></i>&nbsp;Users</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" aria-labelledby="headingTwo" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseOne">
+                    <i class="fa-fw nav-icon fas fa-cogs"></i>
+                    <span>Product</span>
+                </a>
+                <div id="collapseTwo" class="collapse"  data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{ route("admin.categories.index") }}"><i class="fas fa-plus-circle" aria-hidden="true"></i>&nbsp;Category</a>
+                        <a class="collapse-item"  href="{{ route("admin.subcategory.index") }}"><i class="fas fa-fill-drip" aria-hidden="true"></i>&nbsp;Sub Category</a>
+                        {{-- <a class="collapse-item" href="#"><i class="fas fa-weight" aria-hidden="true"></i>Weight Manager</a> --}}
                     </div>
                 </div>
             </li>
@@ -50,16 +64,16 @@
                     <i class="fa-fw nav-icon fas fa-cogs"></i>
                     <span>Attribute Management</span>
                 </a>
-                <div id="collapseTwo" class="collapse"  data-parent="#accordionSidebar">
+                <div id="collapseTwo" class="collapse {{ Request::is("admin/colors*")? "show" : "" }}  {{ Request::is("admin/sizes*")? "show" : "" }}  {{ Request::is("admin/units*")? "show" : "" }}"  data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="#"><i class="fas fa-plus-circle" aria-hidden="true"></i>Size Manager</a>
-                        <a class="collapse-item"  href="#"><i class="fas fa-fill-drip" aria-hidden="true"></i>Color Manager</a>
-                        <a class="collapse-item" href="#"><i class="fas fa-weight" aria-hidden="true"></i>Weight Manager</a>
+                        <a class="collapse-item {{ Request::is('admin/sizes')? "active" : "" }}" href="{{ route("admin.sizes.index") }}"><i class="fas fa-plus-circle" aria-hidden="true"></i>Size Manager</a>
+                        <a class="collapse-item {{ Request::is('admin/colors')? "active" : "" }}"  href="{{ route("admin.colors.index") }}"><i class="fas fa-fill-drip" aria-hidden="true"></i>Color Manager</a>
+                        <a class="collapse-item {{ Request::is('admin/units')? "active" : "" }}" href="#"><i class="fas fa-weight" aria-hidden="true"></i>Unit Manager</a>
                     </div>
                 </div>
             </li>
 
-               <li class="nav-item">
+               {{-- <li class="nav-item">
                   <a class="nav-link collapsed" href="#" data-toggle="collapse" aria-labelledby="headingThree" data-target="#collapsethree" aria-expanded="true" aria-controls="collapseOne">
                     <i class="fas fa-truck"></i>
                     <span>Ordes Management</span>
@@ -76,9 +90,9 @@
 
                     </div>
                 </div>
-              </li>
+              </li> --}}
 
-              <li class="nav-item">
+              {{-- <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" aria-labelledby="headingfour" data-target="#collapsefour" aria-expanded="true" aria-controls="collapseOne">
                   <i class="fa fa-cubes"></i>
                   <span>Set Up</span>
@@ -97,10 +111,10 @@
 
                   </div>
               </div>
-            </li>
+            </li> --}}
 
 
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" aria-labelledby="headingfour" data-target="#collapsefive" aria-expanded="true" aria-controls="collapseOne">
                   <i class="fa fa-money-bill"></i>
                   <span>Accounts</span>
@@ -127,8 +141,6 @@
                       <a class="collapse-item"  href="#"><i class="fa fa-bars" aria-hidden="true"></i>Purchase Return Consignment</a>
                       <a class="collapse-item"  href="#"><i class="fa fa-bars" aria-hidden="true"></i>Stock Receipt Consignment</a>
                       <a class="collapse-item"  href="#"><i class="fa fa-bars" aria-hidden="true"></i>Stock Adjustment</a>
-
-
 
                   </div>
               </div>
@@ -295,7 +307,7 @@
 
                   </div>
               </div>
-            </li>
+            </li> --}}
 
 
                {{-- <li class="nav-item">
