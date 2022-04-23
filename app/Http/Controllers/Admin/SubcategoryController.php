@@ -4,37 +4,25 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Subcategory;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Gate;
 
 class SubcategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-
         abort_if(Gate::denies('subcategory_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        // $id = Category::get('id')->all();
+
         $subcat = Category::where('parent_id', "!=", "")
                     ->orderby('id', 'desc')
                     ->get();
-        // return $subcat;
-
-        // $category = Category::find($id);
-        // return $categories;
         return view('admin.subcategories.index', compact('subcat'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         abort_if(Gate::denies('subcategory_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
@@ -45,12 +33,7 @@ class SubcategoryController extends Controller
         return view('admin.subcategories.create',compact('cat'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         abort_if(Gate::denies('subcategories_store'), Response::HTTP_FORBIDDEN, '403 Forbidden');
@@ -61,48 +44,43 @@ class SubcategoryController extends Controller
         return redirect()->route('admin.subcategory.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function show(Subcategory $subcategory)
     {
-        //
+        abort_if(Gate::denies('subcategory_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        return view('admin.subcategories.show', compact('subcategory'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+
+    public function edit(SubCategory $subcategory)
     {
-        //
+        // abort_if(Gate::denies('category_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $cat = Category::where(['parent_id' => 0])
+        ->orderby('id', 'desc')
+        ->get();
+        return view('admin.subcategories.edit',compact('subcategory','cat'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Subcategory  $subcategory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Subcategory $subcategory)
     {
-        //
+        $subcategory->update($request->all());
+        return redirect()->route('admin.subcategory.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+
+    public function destroy(Subcategory $subcategory)
     {
-        //
+        abort_if(Gate::denies('user_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $subcategory->delete();
+
+        return back();
     }
 }
