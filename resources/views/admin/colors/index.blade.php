@@ -1,7 +1,16 @@
 @extends('layouts.master')
 @section('content')
-
-
+<style>
+    table.dataTable {
+width: 100%;
+margin: 0 ;
+margin-top: 0px;
+margin-bottom: 0px;
+clear: both;
+border-collapse: separate;
+border-spacing: 0;
+}
+</style>
 @can('color_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
@@ -18,7 +27,7 @@
 
     <div class="card-body">
         <div class="table-responsive">
-            <table class=" table table-bordered table-striped table-hover datatable datatable-Color">
+            <table id="example" class="display nowrap" style="width:100%">
                 <thead>
                     <tr>
                         <th width="10">
@@ -89,8 +98,28 @@
 @endsection
 @section('scripts')
 @parent
+<script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
+<script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.0/perfect-scrollbar.min.js"></script>
+<script src="https://unpkg.com/@coreui/coreui@3.2/dist/js/coreui.min.js"></script>
+<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
 <script>
-    $(function () {
+ $(document).ready(function() {
+    $('#example').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print',
+        ]
+    } );
+} );
+</script>
+<script>
+/*    $(function () {
   let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
 @can('color_delete')
   let deleteButtonTrans = '{{ trans('global.datatables.delete') }}'
@@ -133,7 +162,7 @@
           .columns.adjust();
   });
 
-})
+})*/
 
 </script>
 @endsection
