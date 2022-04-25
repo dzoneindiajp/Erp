@@ -294,6 +294,46 @@ class PermissionsTableSeeder extends Seeder
                 'id'    => 71,
                 'title' => 'profile_password_edit',
             ],
+            [
+                'id'    => 72,
+                'title' => 'color_create',
+            ],
+            [
+                'id'    => 73,
+                'title' => 'color_edit',
+            ],
+            [
+                'id'    => 74,
+                'title' => 'color_show',
+            ],
+            [
+                'id'    => 75,
+                'title' => 'color_delete',
+            ],
+            [
+                'id'    => 76,
+                'title' => 'color_access',
+            ],
+            [
+                'id'    => 77,
+                'title' => 'size_create',
+            ],
+            [
+                'id'    => 78,
+                'title' => 'size_edit',
+            ],
+            [
+                'id'    => 79,
+                'title' => 'size_show',
+            ],
+            [
+                'id'    => 80,
+                'title' => 'size_delete',
+            ],
+            [
+                'id'    => 81,
+                'title' => 'size_access',
+            ],
         ];
 
         Permission::insert($permissions);

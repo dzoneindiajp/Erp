@@ -51,11 +51,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
 
     // Sizes
-    Route::delete('sizes/destroy', 'sizescontroller@massdestroy')->name('sizes.massdestroy');
+    Route::delete('sizes/destroy', 'sizescontroller@massDestroy')->name('sizes.massDestroy');
     Route::resource('sizes', 'SizesController');
 
     // Colors
-    Route::delete('colors/destroy', 'colorscontroller@massdestroy')->name('colors.massdestroy');
+    Route::delete('colors/destroy', 'colorscontroller@massDestroy')->name('colors.massDestroy');
     Route::resource('colors', 'ColorsController');
 
 
